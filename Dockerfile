@@ -13,7 +13,7 @@ RUN apk add --update --no-cache curl bash git openssh-client openssl procps dock
 
 ENV HOME /home/${user}
 RUN addgroup -g ${gid} ${group}
-RUN adduser -h $HOME -u ${uid} -g ${gid} -G docker ${user}
+RUN adduser -D -h $HOME -u ${uid} -g ${gid} -G docker ${user}
 
 ARG VERSION=3.23
 ARG AGENT_WORKDIR=/home/${user}/agent
