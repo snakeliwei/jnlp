@@ -18,7 +18,7 @@ RUN adduser -D -h $HOME -u ${uid} -g ${gid} -G docker ${user}
 ARG VERSION=3.23
 ARG AGENT_WORKDIR=/home/${user}/agent
 
-USER ${user}
+# USER ${user}
 ENV AGENT_WORKDIR=${AGENT_WORKDIR}
 RUN mkdir /home/${user}/.jenkins && mkdir -p ${AGENT_WORKDIR}
 
