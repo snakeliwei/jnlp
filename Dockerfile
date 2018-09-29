@@ -5,6 +5,8 @@ ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
 ARG gid=1000
+ARG VERSION=3.27
+ARG AGENT_WORKDIR=/home/${user}/agent
 
 RUN apk add --update --no-cache curl bash git openssh-client openssl procps docker \
   && curl --create-dirs -sSLo /usr/share/jenkins/slave.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${VERSION}/remoting-${VERSION}.jar \
@@ -14,9 +16,6 @@ RUN apk add --update --no-cache curl bash git openssh-client openssl procps dock
 ENV HOME /home/${user}
 RUN addgroup -g ${gid} ${group}
 RUN adduser -D -h $HOME -u ${uid} -g ${gid} -G docker ${user}
-
-ARG VERSION=3.23
-ARG AGENT_WORKDIR=/home/${user}/agent
 
 # USER ${user}
 ENV AGENT_WORKDIR=${AGENT_WORKDIR}
